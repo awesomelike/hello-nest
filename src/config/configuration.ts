@@ -6,7 +6,7 @@ interface EnvConfig {
 
 const validateConfig = (envConfig: EnvConfig): EnvConfig => {
   const envSchema: Joi.ObjectSchema = Joi.object({
-    NODE_ENV: Joi.string().valid('dev', 'test', 'prod'),
+    NODE_ENV: Joi.string().valid('dev', 'test', 'prod').required(),
     MONGODB_SERVER: Joi.string().required(),
     MONGODB_USER: Joi.string().required(),
     MONGODB_PASS: Joi.string().required(),
