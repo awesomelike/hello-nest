@@ -20,19 +20,23 @@ export class ProductsController {
   }
 
   @Get(':id')
-  loadProduct(@Param('id') id: string): Product {
+  loadProduct(@Param('id') id: string) {
     return this.productsService.getById(id);
   }
 
   @Post()
-  addProduct(@Body() body: Product): any {
+  async addProduct(@Body() body: Product) {
     const { title, description, price } = body;
-    const insertId = this.productsService.insert(title, description, price);
+    const insertId = await this.productsService.insert(
+      title,
+      description,
+      price,
+    );
     return { id: insertId };
   }
 
   @Put(':id')
-  updateProduct(@Param('id') id: string, @Body() body: Product): Product {
+  updateProduct(@Param('id') id: string, @Body() body: Product) {
     const updated = this.productsService.update(id, body);
     return updated;
   }
