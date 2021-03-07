@@ -14,6 +14,7 @@ const validateConfig = (envConfig: EnvConfig): EnvConfig => {
 
   const { error, value: validatedEnvConfig } = envSchema.validate(envConfig, {
     allowUnknown: true,
+    abortEarly: false,
   });
 
   if (error) {
